@@ -1,0 +1,75 @@
+DATABASE NAME: coffeeshop
+
+-- Users table
+CREATE TABLE users (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    username VARCHAR(50) UNIQUE NOT NULL,
+    password VARCHAR(255) NOT NULL
+);
+
+-- Products table
+CREATE TABLE products (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(100),
+    price DECIMAL(10,2),
+    image VARCHAR(255),
+    description VARCHAR(255)
+);
+
+-- Cart table (persistent per user)
+CREATE TABLE cart_items (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    user_id INT NOT NULL,
+    product_id INT NOT NULL,
+    quantity INT DEFAULT 1,
+    FOREIGN KEY (user_id) REFERENCES users(id),
+    FOREIGN KEY (product_id) REFERENCES products(id)
+);
+
+-- Orders table (for checkout)
+CREATE TABLE orders (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    user_id INT NOT NULL,
+    total DECIMAL(10,2),
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (user_id) REFERENCES users(id)
+);
+INSERT INTO products (name, price, image) VALUES
+('Espresso', 120.00, 'espresso.jpg'),
+('Cappuccino', 150.00, 'cappuccino.jpg'),
+('Latte', 140.00, 'latte.jpg'),
+('Mocha', 160.00, 'mocha.jpg');
+
+UPDATE products SET description='Strong espresso shot' WHERE name='Espresso';
+UPDATE products SET description='Creamy cappuccino with milk foam' WHERE name='Cappuccino';
+UPDATE products SET description='Smooth latte with milk' WHERE name='Latte';
+UPDATE products SET description='Chocolatey mocha' WHERE name='Mocha';
+
+CREATE TABLE order_items (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    order_id INT NOT NULL,
+    product_id INT NOT NULL,
+    quantity INT NOT NULL
+);
+UPDATE products
+SET price = 168,
+    image = 'Espresso.jpg'
+WHERE id = 1;
+
+og magdelete og user or anything sa db use this
+DELETE FROM order_items WHERE order_id = 3; -- replace 3 with the user ID
+
+CREATE TABLE reviews (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    user_id INT,
+    product_id INT,
+    rating INT,
+    comment TEXT,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+INSERT INTO products (name, price, image, description) VALUES
+('Chocolate Almond Croissant', 120.00, 'Chocolate-Almond.jpg', 'Flaky and buttery chocolate pastry with a touch of Almonds'),
+('Blueberry Muffin', 80.00, 'Blueberry.jpg', 'Fresh baked blueberry muffin'),
+('Cinnamon Roll', 100.00, 'Cinnamon.jpg', 'Soft roll with cinnamon and sugar'),
+('Strawberry Tart', 150.00, 'Strawberrytart.jpg', 'Sweet tart with fresh strawberries');

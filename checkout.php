@@ -59,8 +59,8 @@ $conn->query("DELETE FROM cart_items WHERE user_id=$user_id");
     <title>Checkout Successful</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
-            background: #f4f1ea;
+            font-family: Georgia, serif;
+            background-image: url('images/bg2.jpg'); 
             display: flex;
             justify-content: center;
             align-items: center;
@@ -73,6 +73,7 @@ $conn->query("DELETE FROM cart_items WHERE user_id=$user_id");
             border-radius: 15px;
             box-shadow: 0 8px 20px rgba(0,0,0,0.2);
             text-align: center;
+            border: 5px solid #6f4e37;
         }
         .success-box a {
             display: inline-block;
@@ -86,11 +87,14 @@ $conn->query("DELETE FROM cart_items WHERE user_id=$user_id");
         .success-box a:hover {
             background: #5a3e2b;
         }
+        h2{
+            font-family: Georgia, serif;
+        }
     </style>
 </head>
 <body>
 <div class="success-box">
-    <h2>✅ Checkout Successful!</h2>
+    <h2>Checkout Successful!</h2>
     <p>Your order ID is <strong>#<?php echo $order_id; ?></strong></p>
     <p>Total: ₱<?php echo $total; ?></p>
     <a href="index.php">Back to Menu</a>

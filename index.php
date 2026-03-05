@@ -22,23 +22,28 @@ $cart_count = $count_row['total_items'] ?? 0;
     <title>Coffee Shop</title>
     <style>
         body {
-            font-family: Arial;
-            background: #f4f1ea;
+            font-family: Georgia, serif;
+            background-image: url('images/bg2.jpg'); 
             margin:0;
         }
 
         .logo {
-         font-size: 24px;  
+         font-size: 28px; 
+         font-family: Georgia, serif;
+         color: #FFFFFF;
+         text-shadow: #FFF 0px 0px 5px, #FFF 0px 0px 10px, #FFF 0px 0px 15px, #e0b179 0px 0px 20px, #e0b179 0px 0px 30px, #e0b179 0px 0px 40px, #e0b179 0px 0px 50px, #e0b179 0px 0px 75px;
         }
 
-        .navbar {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            background: #6f4e37;
-            padding: 15px 20px;
-            color: white;
-        }
+        .navbar{
+            display:flex;
+            justify-content:space-between;
+            align-items:center;
+            background:#6f4e37;
+            padding:15px 20px;
+            color:white;
+            margin:20px 30px 0 30px;
+            border-radius:10px;
+}
 
         .right-menu {
             display: flex;
@@ -103,6 +108,7 @@ $cart_count = $count_row['total_items'] ?? 0;
             text-align: center;
             padding: 15px;
             transition: transform 0.2s;
+             border: 2px solid #6f4e37;
         }
 
         .card:hover {
@@ -140,15 +146,31 @@ $cart_count = $count_row['total_items'] ?? 0;
         .card button:hover {
             background: #5a3e2b;
         }
+        button{
+            font-family: Georgia, serif;
+        }
+        .menuTitle{
+            color: transparent;
+            background: #666666;
+            -webkit-background-clip: text;
+            -moz-background-clip: text;
+            background-clip: text;
+            text-shadow: 0px 3px 3px rgba(144, 87, 87, 0.78);
+            text-align:center; 
+            margin-top:25px; 
+            margin-left: 30px; 
+            font-size: 50px; 
+            font-family: Georgia, serif;
+        }
     </style>
 </head>
 <body>
 
 <div class="navbar">
-    <div class="logo">☕ Coffee Shop</div>
+    <div class="logo">Bean & Bear</div>
 
     <div class="right-menu">
-        <a href="cart.php" class="cart-link">🛒 Cart (<?php echo $cart_count; ?>)</a>
+        <a href="cart.php" class="cart-link">Cart (<?php echo $cart_count; ?>)</a>
         <div class="user-menu">
             <button onclick="toggleDropdown()"><?php echo htmlspecialchars($user['username']); ?> ▼</button>
             <div class="dropdown" id="dropdownMenu">
@@ -160,7 +182,7 @@ $cart_count = $count_row['total_items'] ?? 0;
     </div>
 </div>
 
-<h1 style="text-align:left; margin-top:25px; margin-left: 30px;, font-size: 18px; font-family: Arial, sans-serif;">Menu</h1>
+<h1 class="menuTitle">Menu</h1>
 
 <div class="container">
 <?php while($row = $result->fetch_assoc()) { ?>

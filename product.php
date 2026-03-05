@@ -12,8 +12,8 @@ $product = $result->fetch_assoc();
 <head>
     <title><?php echo $product['name']; ?> - Coffee Details</title>
     <style>
-        body { font-family: Arial; background: #f4f1ea; text-align:center; padding:30px;}
-        img { width:300px; border-radius:10px; }
+        body { font-family: Georgia, serif; background-image: url('images/bg2.jpg');  text-align:center; padding:30px;}
+        img { width:300px; border-radius:10px;  border: 5px solid #6f4e37; }
         h1 { margin-top:20px; }
         p.price { font-weight:bold; color:#6f4e37; font-size:20px; }
         button { background:#6f4e37; color:white; padding:10px 20px; border:none; border-radius:5px; cursor:pointer; margin:10px;}

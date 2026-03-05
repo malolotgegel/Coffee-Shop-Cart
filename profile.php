@@ -48,7 +48,7 @@ if(isset($_POST['update_profile'])){
 <head>
     <title>Edit Profile - Coffee Shop</title>
     <style>
-        body { font-family: Arial; background: #f4f1ea; padding: 20px; }
+        body { font-family: Georgia, serif; background-image: url('images/bg2.jpg');  padding: 20px; }
         .profile-box {
             background: white; padding: 30px;
             border-radius: 15px; box-shadow: 0 4px 10px rgba(0,0,0,0.2);
@@ -61,6 +61,10 @@ if(isset($_POST['update_profile'])){
         .error { margin: 10px 0; color: red; }
         a { display: inline-block; margin: 10px 5px; text-decoration: none; background: #6f4e37; color: white; padding: 8px 15px; border-radius: 8px; }
         a:hover { background: #5a3e2b; }
+        .update{font-family: Georgia, serif;}
+        h2{
+            color:#6f4e37; 
+        }
     </style>
 </head>
 <body>
@@ -73,7 +77,7 @@ if(isset($_POST['update_profile'])){
     <form method="POST">
         <input type="text" name="username" value="<?php echo htmlspecialchars($user['username']); ?>" placeholder="Username" required><br>
         <input type="password" name="password" placeholder="New Password (leave blank to keep current)"><br>
-        <button type="submit" name="update_profile">Update Profile</button>
+        <button type="submit" name="update_profile" class="update">Update Profile</button>
     </form>
 
     <a href="index.php">Back to Menu</a>

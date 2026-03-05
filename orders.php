@@ -22,18 +22,9 @@ $orders = $conn->query("
     <title>Order History</title>
     <style>
         body {
-            font-family: Arial;
-            background: #f4f1ea;
+            font-family:Georgia, serif;
+            background-image: url('images/bg2.jpg'); 
             margin: 0;
-        }
-
-        .navbar {
-            background: #6f4e37;
-            padding: 15px;
-            color: white;
-            text-align: center;
-            font-size: 20px;
-            font-weight: bold;
         }
 
         .container {
@@ -75,13 +66,15 @@ $orders = $conn->query("
         .back-btn:hover {
             background: #5a3e2b;
         }
+        h2 {
+    text-align: center;
+    color: #6b4226;
+}
     </style>
 </head>
 <body>
 
-<div class="navbar">
-    ☕ Order History
-</div>
+    <h2>Order History</h2>
 
 <div class="container">
 

@@ -24,8 +24,8 @@ if(isset($_POST['register'])) {
     <title>Register - Coffee Shop</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
-            background: #f4f1ea;
+            font-family:Georgia, serif;
+            background-image: url('images/bg2.jpg'); 
             display: flex;
             justify-content: center;
             align-items: center;
@@ -39,6 +39,7 @@ if(isset($_POST['register'])) {
             box-shadow: 0 8px 20px rgba(0,0,0,0.2);
             width: 350px;
             text-align: center;
+            border: 5px solid #6f4e37;
         }
 
         .register-card h2 {
@@ -66,6 +67,7 @@ if(isset($_POST['register'])) {
             font-size: 16px;
             cursor: pointer;
             transition: background 0.3s;
+            font-family:Georgia, serif;
         }
 
         .register-card button:hover {

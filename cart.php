@@ -19,25 +19,27 @@ $cart_res = $conn->query("
 ?>
 <style>
 body {
-    font-family: Arial, sans-serif;
-    background: #f5f5f5;
+    font-family:Georgia, serif;
+    background-image: url('images/bg2.jpg'); 
     margin: 0;
     padding: 20px;
 }
 
 h2 {
     text-align: center;
+    color: #6b4226;
 }
 
 a {
     text-decoration: none;
     color: #6b4226;
+    font-weight: bold;
 }
 
 .cart-item {
     display: flex;
     gap: 20px;
-    background: #fff;
+    background: #b57856b0;
     padding: 15px;
     margin-bottom: 15px;
     border-radius: 10px;
@@ -71,6 +73,7 @@ button {
     color: white;
     border-radius: 5px;
     cursor: pointer;
+    font-family:Georgia, serif;
 }
 
 button:hover {
@@ -85,14 +88,19 @@ h3 {
     text-align: right;
 }
 
+.h3Title {
+    text-align: left;
+}
+
 .checkout-btn {
     display: block;
     width: 200px;
     margin: 20px auto;
     padding: 10px;
-    background: #28a745;
+    background: #875e1c;
     text-align: center;
     border-radius: 8px;
+    font-family:Georgia, serif;
 }
 
 .checkout-btn button {
@@ -100,6 +108,7 @@ h3 {
     background: transparent;
     color: white;
     font-size: 16px;
+    font-family:Georgia, serif;
 }
 </style>
 <h2>Your Cart</h2>
@@ -114,7 +123,7 @@ h3 {
         <div class="cart-item">
             <img src="images/<?php echo $row['image']; ?>" width="100">
             <div>
-                <h3><?php echo $row['name']; ?></h3>
+                <h3 class="h3Title"><?php echo $row['name']; ?></h3>
                 <p><?php echo $row['description']; ?></p>
                 <p>₱<?php echo $row['price']; ?> x 
                     <form method="POST" action="update_cart.php" style="display:inline;">

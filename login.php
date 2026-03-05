@@ -31,15 +31,19 @@ if(isset($_POST['login'])) {
     <title>Login - Coffee Shop</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
+            font-family:Georgia, serif;
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
-            background-image: url('images/background.png'); 
+            background-image: url('images/bg2.jpg'); 
             background-size: cover;      
             background-position: center; 
             background-repeat: no-repeat;
+        }
+
+        h2{
+            font-size: 30px;
         }
 
         .container {
@@ -51,11 +55,11 @@ if(isset($_POST['login'])) {
         .logo-container img {
             width: 500px; 
             height: auto;
-            j
         }
 
         .login-card {
             background: white;
+            border: 5px solid #6f4e37;
             padding: 40px 30px 30px 30px;
             border-radius: 15px;
             box-shadow: 0 8px 20px rgba(0,0,0,0.2);
@@ -88,6 +92,7 @@ if(isset($_POST['login'])) {
             font-size: 16px;
             cursor: pointer;
             transition: background 0.3s;
+            font-family:Georgia, serif;
         }
 
         .login-card button:hover {
@@ -127,7 +132,7 @@ if(isset($_POST['login'])) {
 
 <div class="container">
     <div class="logo-container">
-        <img src="images/logo1.png" alt="Coffee Shop Logo">
+        <img src="images/bearLogo.png" alt="Coffee Shop Logo">
     </div>
 
     <div class="login-card">
