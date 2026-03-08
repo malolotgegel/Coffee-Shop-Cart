@@ -1,0 +1,18 @@
+$2y$10$HnwC7WLjsL.bb1kIqQExXeqT8iKIPeq8aQ4ZQUnyK3lo1jyJKUbMW **admin hash password ('admin123')
+
+http://localhost/Coffeeshop/Coffee-Shop-Cart/
+
+Affogato
+180.00
+A scoop of cold vanilla gelato or ice cream "drowned" with a shot of hot espresso.
+
+ALTER TABLE users
+ADD COLUMN role ENUM('user','admin') NOT NULL DEFAULT 'user';
+
+INSERT INTO users (username, password, role) 
+VALUES ('admin', '$2y$10$YourHashedPasswordHere', 'admin');
+
+ALTER TABLE products ADD COLUMN status VARCHAR(20) NOT NULL DEFAULT 'available';
+
+ALTER TABLE orders
+ADD COLUMN status VARCHAR(20) DEFAULT NULL;

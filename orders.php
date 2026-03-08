@@ -22,7 +22,7 @@ $orders = $conn->query("
     <title>Order History</title>
     <style>
         body {
-            font-family:Georgia, serif;
+            font-family: Georgia, serif;
             background-image: url('images/bg2.jpg'); 
             margin: 0;
         }
@@ -45,6 +45,20 @@ $orders = $conn->query("
             margin: 8px 0;
         }
 
+        .back-btn, .view-btn {
+            display: inline-block;
+            margin: 5px 0;
+            background: #6f4e37;
+            color: white;
+            padding: 8px 15px;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+
+        .back-btn:hover, .view-btn:hover {
+            background: #5a3e2b;
+        }
+
         .empty {
             text-align: center;
             background: white;
@@ -53,28 +67,15 @@ $orders = $conn->query("
             box-shadow: 0 4px 10px rgba(0,0,0,0.1);
         }
 
-        .back-btn {
-            display: inline-block;
-            margin-bottom: 20px;
-            background: #6f4e37;
-            color: white;
-            padding: 8px 15px;
-            text-decoration: none;
-            border-radius: 5px;
-        }
-
-        .back-btn:hover {
-            background: #5a3e2b;
-        }
         h2 {
-    text-align: center;
-    color: #6b4226;
-}
+            text-align: center;
+            color: #6b4226;
+        }
     </style>
 </head>
 <body>
 
-    <h2>Order History</h2>
+<h2>Order History</h2>
 
 <div class="container">
 
@@ -86,6 +87,7 @@ $orders = $conn->query("
                 <p><strong>Order ID:</strong> <?php echo $row['id']; ?></p>
                 <p><strong>Total:</strong> ₱<?php echo $row['total']; ?></p>
                 <p><strong>Date:</strong> <?php echo $row['created_at']; ?></p>
+                <a href="view_order_user.php?id=<?php echo $row['id']; ?>" class="view-btn">View Order</a>
             </div>
         <?php } ?>
     <?php } else { ?>

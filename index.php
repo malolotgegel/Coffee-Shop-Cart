@@ -3,7 +3,7 @@ session_start();
 include("db.php");
 
 if(!isset($_SESSION['user_id'])) {
-    header("Location: login.php");
+    header("Location: homepage.php");
     exit();
 }
 
@@ -11,7 +11,9 @@ $user_id = $_SESSION['user_id'];
 $user_res = $conn->query("SELECT username FROM users WHERE id=$user_id");
 $user = $user_res->fetch_assoc();
 
-$result = $conn->query("SELECT * FROM products");
+
+$result = $conn->query("SELECT * FROM products WHERE status='available' ORDER BY id ASC");
+
 $count_res = $conn->query("SELECT SUM(quantity) as total_items FROM cart_items WHERE user_id = $user_id");
 $count_row = $count_res->fetch_assoc();
 $cart_count = $count_row['total_items'] ?? 0;
@@ -25,13 +27,15 @@ $cart_count = $count_row['total_items'] ?? 0;
             font-family: Georgia, serif;
             background-image: url('images/bg2.jpg'); 
             margin:0;
+            background-size: cover;
+            background-position: center;
         }
 
         .logo {
-         font-size: 28px; 
-         font-family: Georgia, serif;
-         color: #FFFFFF;
-         text-shadow: #FFF 0px 0px 5px, #FFF 0px 0px 10px, #FFF 0px 0px 15px, #e0b179 0px 0px 20px, #e0b179 0px 0px 30px, #e0b179 0px 0px 40px, #e0b179 0px 0px 50px, #e0b179 0px 0px 75px;
+            font-size: 28px; 
+            font-family: Georgia, serif;
+            color: #FFFFFF;
+            text-shadow: 0 0 5px #FFF, 0 0 10px #FFF, 0 0 20px #e0b179;
         }
 
         .navbar{
@@ -43,7 +47,7 @@ $cart_count = $count_row['total_items'] ?? 0;
             color:white;
             margin:20px 30px 0 30px;
             border-radius:10px;
-}
+        }
 
         .right-menu {
             display: flex;
@@ -108,7 +112,7 @@ $cart_count = $count_row['total_items'] ?? 0;
             text-align: center;
             padding: 15px;
             transition: transform 0.2s;
-             border: 2px solid #6f4e37;
+            border: 2px solid #6f4e37;
         }
 
         .card:hover {
@@ -146,9 +150,7 @@ $cart_count = $count_row['total_items'] ?? 0;
         .card button:hover {
             background: #5a3e2b;
         }
-        button{
-            font-family: Georgia, serif;
-        }
+
         .menuTitle{
             color: transparent;
             background: #666666;
@@ -185,20 +187,25 @@ $cart_count = $count_row['total_items'] ?? 0;
 <h1 class="menuTitle">Menu</h1>
 
 <div class="container">
-<?php while($row = $result->fetch_assoc()) { ?>
+<?php if($result->num_rows > 0): ?>
+    <?php while($row = $result->fetch_assoc()): ?>
     <div class="card">
         <a href="product.php?id=<?php echo $row['id']; ?>">
-            <img src="images/<?php echo $row['image']; ?>" alt="<?php echo $row['name']; ?>">
+            <img src="images/<?php echo htmlspecialchars($row['image']); ?>" alt="<?php echo htmlspecialchars($row['name']); ?>">
         </a>
-        <h3><?php echo $row['name']; ?></h3>
-        <p class="price">₱<?php echo $row['price']; ?></p>
+        <h3><?php echo htmlspecialchars($row['name']); ?></h3>
+        <p class="price">₱<?php echo number_format($row['price'],2); ?></p>
         <form method="POST" action="add_to_cart.php">
             <input type="hidden" name="id" value="<?php echo $row['id']; ?>">
             <button type="submit">Add to Cart</button>
         </form>
     </div>
-<?php } ?>
+    <?php endwhile; ?>
+<?php else: ?>
+    <p style="text-align:center; color:white; font-size:18px;">No products available.</p>
+<?php endif; ?>
 </div>
+
 <script>
 function toggleDropdown() {
     var menu = document.getElementById('dropdownMenu');
