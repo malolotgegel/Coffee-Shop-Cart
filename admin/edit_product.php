@@ -26,6 +26,7 @@ $error = "";
 if(isset($_POST['update'])) {
     $name = $_POST['name'];
     $price = $_POST['price'];
+    $description = $_POST['description'];
 
     if(isset($_FILES['image']) && $_FILES['image']['error'] === 0) {
         $imageName = basename($_FILES['image']['name']);
@@ -40,8 +41,8 @@ if(isset($_POST['update'])) {
     }
 
     if(empty($error)){
-        $stmt = $conn->prepare("UPDATE products SET name = ?, price = ?, image = ? WHERE id = ?");
-        $stmt->bind_param("sdsi", $name, $price, $product['image'], $id);
+        $stmt = $conn->prepare("UPDATE products SET name = ?, price = ?, image = ?, description = ? WHERE id = ?");
+        $stmt->bind_param("sdssi", $name, $price, $product['image'], $description, $id);
         $stmt->execute();
 
         header("Location: products.php");
@@ -78,12 +79,23 @@ if(isset($_POST['update'])) {
             font-size: 16px;
             box-sizing: border-box;
         }
-        
+        .description-field{
+            width: 100%;
+            height: 120px;
+            padding: 12px;
+            margin: 15px 0;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+            font-family: Georgia, serif;
+            font-size: 16px;
+            box-sizing: border-box;
+            resize: none;
+        }
         .button {
          display: inline-block;
          padding: 8px 15px;
          background: #6f4e37;
-        color: white;
+         color: white;
          text-decoration: none;
          border-radius: 6px;
          margin-top: 15px;
@@ -133,6 +145,7 @@ if(isset($_POST['update'])) {
     <p>Change Image (optional):</p>
     <input type="file" name="image" accept="image/*">
     
+    <textarea name="description" class="description-field"><?php echo htmlspecialchars($product['description']); ?></textarea>
     <button type="submit" name="update">Update Product</button>
 </form>
 

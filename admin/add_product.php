@@ -53,7 +53,7 @@ if(isset($_POST['add'])) {
             border-radius: 12px;
             box-shadow: 0 8px 20px rgba(0,0,0,0.1);
         }
-        input, textarea, button {
+        input, button {
             width: 100%;
             padding: 12px;
             margin: 10px 0;
@@ -61,6 +61,19 @@ if(isset($_POST['add'])) {
             border: 1px solid #ccc;
             font-size: 16px;
             box-sizing: border-box;
+            resize: none;
+        }
+        .textarea {
+            width: 100%;
+            height: 120px;
+            padding: 12px;
+            margin: 15px 0;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+            font-family: Georgia, serif;
+            font-size: 16px;
+            box-sizing: border-box;
+            resize: none;
         }
         .button {
             display: inline-block;
@@ -105,7 +118,7 @@ if(isset($_POST['add'])) {
         <input type="text" name="name" placeholder="Product Name" required>
         <input type="number" step="0.01" name="price" placeholder="Price (₱)" required>
         <input type="file" name="image" accept="image/*" required>
-        <textarea name="description" placeholder="Product Description" required></textarea>
+        <textarea class= "textarea" name="description" placeholder="Product Description" required></textarea>
         <button type="submit" name="add">Add Product</button>
     </form>
 <a href="products.php" class="button">← Back to Products</a>
